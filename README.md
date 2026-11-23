@@ -30,33 +30,15 @@ endmodule
 ```
 ```
 ### Testbench Program(Half Adder)
-module half_adder_tb;
-    reg A, B;
-    wire Sum, Carry;
-
-    // Instantiate the Half Adder
-    half_adder ha_uut (
-        .A(A),
-        .B(B),
-        .Sum(Sum),
-        .Carry(Carry)
-    );
-
-    initial begin
-        // ---- VCD dump setup ----
-        $dumpfile("half_adder.vcd");      // name of the VCD file to be generated
-        $dumpvars(0, half_adder_tb);      // dump all signals in this testbench hierarchy
-
-        // ---- Apply all 4 input combinations ----
-        $monitor("Time=%0t A=%b B=%b | Sum=%b Carry=%b", $time, A, B, Sum, Carry);
-        
-        A = 0; B = 0; #10;
-        A = 0; B = 1; #10;
-        A = 1; B = 0; #10;
-        A = 1; B = 1; #10;
-
-        #10 $finish;
-    end
+module half_subtractor (
+    input  wire A,
+    input  wire B,
+    output wire Diff,
+    output wire Borrow
+);
+    assign Diff   = A ^ B;      // XOR
+    assign Borrow = (~A) & B;   // A' . B
+endmodule
 endmodule
 ### Verilog Program(Half Subtractor)
 module half_subtractor (
