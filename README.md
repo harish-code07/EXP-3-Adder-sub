@@ -42,6 +42,7 @@ endmodule
 endmodule
 ```
 
+```
 ### Verilog Program(Half Subtractor)
 module half_subtractor (
     input  wire A,
